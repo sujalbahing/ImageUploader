@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+      <div class="py-5 text-center bg-secondary text-white">
+        <h2>Upload Image</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form}}
+            </div>
+            <button type="submit" class="btn btn-danger">Upload</button>
+            
+        </form>
+      </div>  
+      <hr>
+      <h3>Uploaded Images</h3>
+      <div class="row">
+        {% for image in img%}
+          <div class="col-sm-4">
+              <div class="card m-2">
+              <img src="{{ image.photo.url }}" alt="" class="card-img-top" height="200px">
+              </div>
+              <div class="card-footer">
+              <small class="text-muted">{{image.date}}</small>
+              </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
